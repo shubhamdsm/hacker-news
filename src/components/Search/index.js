@@ -1,12 +1,22 @@
-import { Input, Heading, Center } from '@chakra-ui/react'
+import { Input, Heading, Center, Switch, Flex, FormControl, useColorMode } from '@chakra-ui/react'
 const Search = () => {
+    const {colorMode, toggleColorMode} = useColorMode();
+    const isDark = colorMode === "dark";
     return(
-        <section>
+        <Flex direction='column'>
         <Center>
             <Heading m={3}>Hacker News</Heading>
-        </Center>    
+            <Switch
+                    m="1rem"
+                    isChecked={isDark}
+                    onChange={toggleColorMode}
+                    pr={2}
+                />
+        </Center>
+        <FormControl>    
             <Input placeholder='Search News'/>
-        </section>
+        </FormControl>
+        </Flex>
     )
 }
 export default Search

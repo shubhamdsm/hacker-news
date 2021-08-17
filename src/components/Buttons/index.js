@@ -1,14 +1,14 @@
-import { Button, Center, Flex, Spacer, Text } from "@chakra-ui/react"
+import { Button, Center, Flex, Spacer } from "@chakra-ui/react"
 
 const Buttons = () => {
     return(
         <Flex direction='row' mt={5}>
         
-            <Button>Previous</Button>
+            <Button colorScheme='teal'>Previous</Button>
             <Spacer/>
             <Center>0 out of 50</Center>
             <Spacer/>
-            <Button>Next</Button>
+            <Button colorScheme='teal'>Next</Button>
        
         </Flex>
     )
