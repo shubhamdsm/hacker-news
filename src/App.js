@@ -1,8 +1,9 @@
 import './App.css';
+import News from './components/News';
 function App() {
   return (
     <div className="App">
-      <h2>hello</h2>
+      <News/>
     </div>
   );
 }
