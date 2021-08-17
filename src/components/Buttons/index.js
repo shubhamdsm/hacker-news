@@ -1,6 +1,16 @@
+import { Button, Center, Flex, Spacer, Text } from "@chakra-ui/react"
+
 const Buttons = () => {
     return(
-        <h1>Buttons</h1>
+        <Flex direction='row' mt={5}>
+        
+            <Button>Previous</Button>
+            <Spacer/>
+            <Center>0 out of 50</Center>
+            <Spacer/>
+            <Button>Next</Button>
+       
+        </Flex>
     )
 }
 export default Buttons
