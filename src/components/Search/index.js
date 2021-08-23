@@ -1,5 +1,8 @@
+import { useContext } from 'react';
+import { AppContext } from '../../context';
 import { Input, Heading, Center, Switch, Flex, FormControl, useColorMode } from '@chakra-ui/react'
 const Search = () => {
+    const { search } = useContext(AppContext);
     const {colorMode, toggleColorMode} = useColorMode();
     const isDark = colorMode === "dark";
     return(
@@ -14,7 +17,7 @@ const Search = () => {
                 />
         </Center>
         <FormControl>    
-            <Input placeholder='Search News'/>
+            <Input placeholder='Search News'value={search}/>
         </FormControl>
         </Flex>
     )
