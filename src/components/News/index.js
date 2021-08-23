@@ -17,10 +17,10 @@ const News = () => {
           return(
             <Box key={objectID} mt={5} p={4}  w="100%" _hover={{ boxShadow: "dark-lg" }} boxShadow="lg" transition='all 0.5s ease-in-out'  rounded="md" >
                  <h4>{title}/</h4>
-                 <p className='info'>
+                 <Text color={'gray.500'}  className='info'>
               {points} points by <span> {author} |</span> {num_comments}{' '}
               comments
-            </p>
+            </Text>
              <Flex justify='space-between'>
                <Text mt={3}>
                 <Link color="blue.500" href={url} target='_blank'>
