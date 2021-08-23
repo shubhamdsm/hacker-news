@@ -1,6 +1,6 @@
 import React,{ useReducer, useEffect } from 'react'
 import reducer from '../reducer';
-import { REMOVE_NEWS, SET_LOADING, SET_NEWS } from '../actions';
+import { HANDLE_SEARCH, REMOVE_NEWS, SET_LOADING, SET_NEWS } from '../actions';
 export const AppContext = React.createContext();
 
 
@@ -34,13 +34,16 @@ const AppProvider = ({children}) => {
         dispatch({type:REMOVE_NEWS, payload:id})
 
     }
+    const handleSearch = (search) => {
+        dispatch({type:HANDLE_SEARCH, payload:search})
+    }
 
     useEffect(()=> {
         fetchNews(`${API_ENDPOINT}query=${state.search}&page=${state.page}`)
     },[state.search, state.page])
     
     return(
-        <AppContext.Provider value={{...state, removeNews}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, removeNews, handleSearch}}>{children}</AppContext.Provider>
     )
 }
 export {AppProvider}
