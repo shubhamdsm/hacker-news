@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { Box, Center, Flex, Link,Text } from '@chakra-ui/react'
+import { Box, Center, Flex, Link,Text,Button } from '@chakra-ui/react'
 import { AppContext } from '../../context'
 import { Spinner } from "@chakra-ui/react"
 const News = () => {
-  const { loading,news } = useContext(AppContext);
+  const { loading,news, removeNews } = useContext(AppContext);
 
     if(loading){
       return <Center mt={10}>
@@ -22,16 +22,16 @@ const News = () => {
               comments
             </p>
              <Flex justify='space-between'>
-               <Text>
+               <Text mt={3}>
                 <Link color="blue.500" href={url} target='_blank'>
                   Read More
                 </Link>
 
                 </Text>
                 <Text>
-                 <Link color="red.500" href="#">
+                 <Button color="red.500"  onClick={()=> removeNews(objectID)}>
                  Remove
-                 </Link>
+                 </Button>
                 </Text>
              </Flex>
       </Box>
