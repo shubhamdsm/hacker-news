@@ -1,14 +1,17 @@
+import React, { useContext } from 'react';
 import { Button, Center, Flex, Spacer } from "@chakra-ui/react"
 
+import { AppContext } from "../../context"
 const Buttons = () => {
+    const { loading,page,nbPages, handlePage } = useContext(AppContext)
     return(
         <Flex direction='row' mt={5}>
         
-            <Button colorScheme='teal'>Previous</Button>
+            <Button disabled={loading}  colorScheme='teal' onClick={() => handlePage('prev')}>Previous</Button>
             <Spacer/>
-            <Center>0 out of 50</Center>
+            <Center> {page + 1} of {nbPages} </Center>
             <Spacer/>
-            <Button colorScheme='teal'>Next</Button>
+            <Button disabled={loading} colorScheme='teal' onClick={() => handlePage('next')}>Next</Button>
        
         </Flex>
     )

@@ -1,6 +1,6 @@
 import React,{ useReducer, useEffect } from 'react'
 import reducer from '../reducer';
-import { HANDLE_SEARCH, REMOVE_NEWS, SET_LOADING, SET_NEWS } from '../actions';
+import { HANDLE_PAGE, HANDLE_SEARCH, REMOVE_NEWS, SET_LOADING, SET_NEWS } from '../actions';
 export const AppContext = React.createContext();
 
 
@@ -8,7 +8,7 @@ const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?'
 const initialState = {
     loading:false,
     news: [],
-    search:'javascript',
+    search:'',
     page: 0,
     nbPages: 0,
 
@@ -22,7 +22,6 @@ const AppProvider = ({children}) => {
         try{
             const res = await fetch(url)
             const data = await res.json()
-            console.log(data)
             dispatch({type: SET_NEWS,
             payload: { news: data.hits, nbPages:data.nbPages}
             })
@@ -37,13 +36,15 @@ const AppProvider = ({children}) => {
     const handleSearch = (search) => {
         dispatch({type:HANDLE_SEARCH, payload:search})
     }
-
+    const handlePage = (val) => {
+        dispatch({type: HANDLE_PAGE, payload: val})
+    } 
     useEffect(()=> {
         fetchNews(`${API_ENDPOINT}query=${state.search}&page=${state.page}`)
     },[state.search, state.page])
     
     return(
-        <AppContext.Provider value={{...state, removeNews, handleSearch}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, removeNews, handleSearch, handlePage}}>{children}</AppContext.Provider>
     )
 }
 export {AppProvider}
